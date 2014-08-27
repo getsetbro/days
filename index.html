@@ -1,75 +1,79 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
-<meta charset="utf-8" />
-<title>days</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width">
+    <title>days</title>
 </head>
+
 <body>
-<form action="">
-<input type="date" id="date"/><button type="submit" onclick="go(event);">go</button>
-</form>
-<br>
-Time since is:
-<div id="display"></div>
-<script src="//code.jquery.com/jquery-latest.min.js"></script>
-<script>
-// Set the unit values in milliseconds.
-var msecPerYear = 31558464000; // 31558464000
-var msecPerMonth = msecPerYear / 12;
-var msecPerWeek = 604800000;
-var msecPerDay = 86400000; //24 * 60 * 60 * 1000;
+    <form action="">
+        <input type="date" id="date" />
+        <button type="submit" onclick="go(event);">go</button>
+    </form>
+    <br>Time since is:
+    <div id="display"></div>
+    <script src="//code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+    // Set the unit values in milliseconds.
+    var msecPerYear = 31558464000; // 31558464000
+    var msecPerMonth = msecPerYear / 12;
+    var msecPerWeek = 604800000;
+    var msecPerDay = 86400000; //24 * 60 * 60 * 1000;
 
-var b = localStorage.getItem("b");
-if(b) { 
-    go2(b);
-}
-// Set a date and get the milliseconds
-function go(e) {
-  e.preventDefault();
-  var mydate=document.getElementById('date').value;
-  go2(mydate);
-}
-function go2(val) {
-  localStorage.setItem("b", val);
-  var date = new Date(val);
-  var nowToday = new Date();
+    var b = localStorage.getItem("b");
+    if (b) {
+        go2(b);
+    }
+    // Set a date and get the milliseconds
+    function go(e) {
+        e.preventDefault();
+        var mydate = document.getElementById('date').value;
+        go2(mydate);
+    }
 
-  // Get the difference in milliseconds.
-  var interval = nowToday.getTime() - date.getTime();
+    function go2(val) {
+        localStorage.setItem("b", val);
+        var date = new Date(val);
+        var nowToday = new Date();
 
-  // Calculate how many days the interval contains. Subtract that
-  // many days from the interval to determine the remainder.
-  var years = Math.floor(interval / msecPerYear );
-  var months = Math.floor(interval / msecPerMonth );
-  var weeks = Math.floor(interval / msecPerWeek );
-  var days = Math.floor(interval / msecPerDay );
+        // Get the difference in milliseconds.
+        var interval = nowToday.getTime() - date.getTime();
 
-  interval = interval - (years * msecPerYear );
+        // Calculate how many days the interval contains. Subtract that
+        // many days from the interval to determine the remainder.
+        var years = Math.floor(interval / msecPerYear);
+        var months = Math.floor(interval / msecPerMonth);
+        var weeks = Math.floor(interval / msecPerWeek);
+        var days = Math.floor(interval / msecPerDay);
 
-  var month = Math.floor(interval / msecPerMonth );
-  if(month > 0){
-    interval = interval - (months * msecPerMonth );
-  }
+        interval = interval - (years * msecPerYear);
 
-  var day = Math.floor(interval / msecPerDay );
+        var month = Math.floor(interval / msecPerMonth);
+        if (month > 0) {
+            interval = interval - (months * msecPerMonth);
+        }
 
-  // Display the result.
-  var result = years + " years, " + month + " months, " + day + " days.";
-      result += "<br>";
-      result += months + " months total.";
-      result += "<br>";
-      result += weeks + " weeks total.";
-      result += "<br>";
-      result += days + " days total.";
+        var day = Math.floor(interval / msecPerDay);
 
-  $("#display").html(result);
-  //Output: 11 years, 0 months, 8 days.
-  //300 months total
-  //4028 days total
+        // Display the result.
+        var result = years + " years, " + month + " months, " + day + " days.";
+        result += "<br>";
+        result += months + " months total.";
+        result += "<br>";
+        result += weeks + " weeks total.";
+        result += "<br>";
+        result += days + " days total.";
 
-}
+        $("#display").html(result);
+        //Output: 11 years, 0 months, 8 days.
+        //300 months total
+        //4028 days total
 
-</script>
+    }
+    </script>
 </body>
+
 </html>
