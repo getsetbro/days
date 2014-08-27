@@ -7,30 +7,30 @@
     <meta name="viewport" content="width=device-width">
     <title>Time from...</title>
     <link rel="stylesheet" href="css/gumby.css">
-    <style>
-    button{
-        visibility: hidden;
-    }
-    </style>
 </head>
 
 <body>
     <div class="row" id="display"></div>
     <div class="row">
         <form>
-            <button type="submit" onclick="go(event);"></button>
             <label for="date">Enter a date:</label>
             <div class="append field">
                 <input type="date" id="date" class="wide input" placeholder="mm/dd/yyyy" />
                 <div class="medium info btn">
-                    <a href="" onclick="go(event);">Set it</a>
+                    <button type="submit" onclick="go(event);">Set it</button>
                 </div>
             </div>
         </form>
-        <div class="medium warning btn">
-            <a href="" onclick="clearDate(event);">Clear it</a>
+        <div class="medium metro rounded btn warning">
+            <button type="button" onclick="clearDate(event);">Clear it</button>
         </div>
     </div>
+    <br><br><br>
+<!--     <footer class="row">
+        <div class="medium secondary btn">
+            <a href="//github.com/getsetbro/days">fork</a>
+        </div>
+    </footer> -->
     <script>
     // Set the unit values in milliseconds.
     var msecPerYear = 31558464000; // 31558464000
@@ -60,7 +60,6 @@
 
         // Get the difference in milliseconds.
         var interval = nowToday.getTime() - date.getTime();
-        console.log(interval);
 
         // Calculate how many days the interval contains. Subtract that
         // many days from the interval to determine the remainder.
@@ -78,10 +77,10 @@
 
         // Display the result.
         var result = "<h1><small>Time from</small> " + date.toDateString() + " <small>is</small></h1><h2>" + years + " <small>years,</small> " + month + " <small>months,</small> " + day + " <small>days.</small></h2>";
-        result += "<h5>Totals:</h5><ul><li>";
-        result += monthS + " months.</li><li>";
-        result += weekS + " weeks.</li><li>";
-        result += dayS + " days.</li>";
+        result += "<b>Totals:</b> ";
+        result += monthS + " months / ";
+        result += weekS + " weeks / ";
+        result += dayS + " days/";
 
         document.title = "Time from " + date.toDateString();
 
@@ -93,9 +92,9 @@
         e.preventDefault();
         var c = localStorage.getItem("b");
         if (c) {
-        localStorage.removeItem("b");
-        d.innerHTML = '';
-        document.title = "Time from...";
+            localStorage.removeItem("b");
+            d.innerHTML = '';
+            document.title = "Time from...";
         }
     }
     </script>
