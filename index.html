@@ -6,31 +6,32 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width">
     <title>Time from...</title>
-    <link rel="stylesheet" href="css/gumby.css">
+    <link rel="stylesheet" href="css/gumby.css"/>
+    <style>
+        .row{text-align: center;}
+    </style>
+
 </head>
 
 <body>
+<div class="icon-note icon-left"></div>
     <div class="row" id="display"></div>
+    <br>
     <div class="row">
         <form>
             <label for="date">Enter a date:</label>
             <div class="append field">
-                <input type="date" id="date" class="wide input" placeholder="mm/dd/yyyy" />
-                <div class="medium info btn">
-                    <button type="submit" onclick="go(event);">Set it</button>
+                <input type="date" id="date" class="input normal" placeholder="mm/dd/yyyy" />
+                <div class="medium info btn icon-check icon-left">
+                    <button type="submit" onclick="go(event);"><i class="icon-check"></i> Set it</button>
                 </div>
             </div>
+            <div class="medium metro rounded btn warning">
+                <button type="button" onclick="clearDate(event);"><i class="icon-cancel"></i> Forget it</button>
+            </div>
         </form>
-        <div class="medium metro rounded btn warning">
-            <button type="button" onclick="clearDate(event);">Clear it</button>
-        </div>
     </div>
-    <br><br><br>
-<!--     <footer class="row">
-        <div class="medium secondary btn">
-            <a href="//github.com/getsetbro/days">fork</a>
-        </div>
-    </footer> -->
+
     <script>
     // Set the unit values in milliseconds.
     var msecPerYear = 31558464000; // 31558464000
@@ -77,10 +78,10 @@
 
         // Display the result.
         var result = "<h1><small>Time from</small> " + date.toDateString() + " <small>is</small></h1><h2>" + years + " <small>years,</small> " + month + " <small>months,</small> " + day + " <small>days.</small></h2>";
-        result += "<b>Totals:</b> ";
-        result += monthS + " months / ";
-        result += weekS + " weeks / ";
-        result += dayS + " days/";
+        result += "<h3><small>Totals:</small> ";
+        result += monthS + "<small>months</small> ";
+        result += weekS + "<small>weeks</small> ";
+        result += dayS + "<small>days.</small></h3>";
 
         document.title = "Time from " + date.toDateString();
 
